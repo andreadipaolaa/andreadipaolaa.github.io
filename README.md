@@ -19,9 +19,14 @@ Questo progetto è pensato per essere:
 ## La scena 3D
 
 La hero usa [three.js](https://threejs.org) tramite
-[@react-three/fiber](https://docs.pmnd.rs/react-three-fiber): una rete di
-nodi collegati (un "cluster") che ruota lentamente, con un icosaedro
-wireframe al centro e la camera che segue il mouse in parallasse.
+[@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) e rappresenta
+un cluster Kubernetes stilizzato:
+
+- al centro un **timone a 7 razze** (il control plane) che gira e "respira"
+- attorno, **nodi worker** in orbita: box wireframe con dentro i **pod**,
+  piccoli cubi che nascono con un "pop" e terminano in cicli sfalsati
+- **pacchetti** che viaggiano lungo le connessioni dal control plane ai nodi
+- la camera segue il mouse in parallasse
 
 Dettagli utili:
 

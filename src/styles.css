@@ -631,7 +631,9 @@ a {
 
   .hero-3d {
     inset: -40px -30vw 0 -30vw;
-    opacity: 0.75;
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 88%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 88%);
   }
 
   .contact-card {

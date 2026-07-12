@@ -31,7 +31,6 @@ const experiences = [
     companyUrl: 'https://4science.com',
     companyNote: 'Cloud AWS, Kubernetes e GitOps per progetti istituzionali',
     highlights: [
-      'Ho progettato il sistema di CI/CD GitOps del progetto istituzionale del Gioco del Lotto italiano, con deployment dichiarativi basati su ArgoCD.',
       'Progetto e gestisco infrastrutture su AWS: cluster EKS, database Aurora, CloudFront come CDN, firewall e networking.',
       'Gestisco release e ambienti con ArgoCD: lo stato dell’infrastruttura è versionato in Git, coerente e ricostruibile.',
       'Automatizzo build e release con GitHub Actions e workflow riusabili.',
@@ -43,6 +42,7 @@ const experiences = [
     role: 'DevOps Engineer',
     companyNote: 'Piattaforme Kubernetes in cloud Azure e on-premise',
     highlights: [
+      'Ho progettato il sistema di CI/CD GitOps del progetto istituzionale del Gioco del Lotto italiano.',
       'Gestione di cluster Kubernetes su AKS e on-premise su VMware.',
       'Deployment GitOps con FluxCD e Helm: ambienti versionati, coerenti e ricostruibili.',
       'Automazione di provisioning e configurazione con Ansible.',
