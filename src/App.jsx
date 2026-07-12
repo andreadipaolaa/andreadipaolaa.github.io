@@ -13,6 +13,8 @@ const stack = [
   'GitOps',
   'Aurora',
   'CloudFront',
+  'Jenkins',
+  'Bitbucket Pipelines',
   'Helm',
   'GitHub Actions',
   'FluxCD',
@@ -33,21 +35,21 @@ const experiences = [
     highlights: [
       'Progetto e gestisco infrastrutture su AWS: cluster EKS, database Aurora, CloudFront come CDN, firewall e networking.',
       'Gestisco release e ambienti con ArgoCD: lo stato dell’infrastruttura è versionato in Git, coerente e ricostruibile.',
-      'Automatizzo build e release con GitHub Actions e workflow riusabili.',
+      'Costruisco pipeline CI/CD con Jenkins e Bitbucket Pipelines, integrate nel flusso GitOps.',
     ],
-    tags: ['AWS', 'EKS', 'ArgoCD', 'Aurora', 'CloudFront', 'GitHub Actions'],
+    tags: ['AWS', 'EKS', 'ArgoCD', 'Aurora', 'CloudFront', 'Jenkins', 'Bitbucket Pipelines'],
   },
   {
     period: 'In precedenza',
     role: 'DevOps Engineer',
     companyNote: 'Piattaforme Kubernetes in cloud Azure e on-premise',
     highlights: [
-      'Ho progettato il sistema di CI/CD GitOps del progetto istituzionale del Gioco del Lotto italiano.',
+      'Ho progettato il sistema di CI/CD GitOps del progetto istituzionale del Gioco del Lotto italiano, con pipeline basate su GitHub Actions.',
       'Gestione di cluster Kubernetes su AKS e on-premise su VMware.',
       'Deployment GitOps con FluxCD e Helm: ambienti versionati, coerenti e ricostruibili.',
       'Automazione di provisioning e configurazione con Ansible.',
     ],
-    tags: ['AKS', 'Kubernetes', 'VMware', 'FluxCD', 'Helm', 'Ansible'],
+    tags: ['AKS', 'Kubernetes', 'VMware', 'FluxCD', 'Helm', 'GitHub Actions', 'Ansible'],
   },
 ]
 
@@ -65,7 +67,7 @@ const areas = [
   {
     title: 'Automazione CI/CD',
     description:
-      'Pipeline GitHub Actions e workflow riusabili che rendono la delivery prevedibile e noiosa. Nel senso buono.',
+      'Pipeline con Jenkins e Bitbucket Pipelines che rendono la delivery prevedibile e noiosa. Nel senso buono.',
   },
 ]
 
