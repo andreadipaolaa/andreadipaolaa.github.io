@@ -1,28 +1,55 @@
+import { lazy, Suspense } from 'react'
+import TiltCard from './components/TiltCard.jsx'
+import Reveal from './components/Reveal.jsx'
+
+// three.js è pesante: la scena si carica in lazy per non bloccare il primo render
+const Scene3D = lazy(() => import('./components/Scene3D.jsx'))
+
 const stack = [
   'Kubernetes',
+  'AKS',
   'GitOps',
   'FluxCD',
   'Helm',
   'GitHub Actions',
   'Ansible',
-  'AKS',
   'Docker',
   'Linux',
   'CI/CD',
 ]
 
+const experiences = [
+  {
+    period: 'Oggi',
+    role: 'DevOps Engineer',
+    company: '4Science',
+    companyUrl: 'https://4science.com',
+    companyNote: 'Platinum Certified Provider di DSpace · open science e research data',
+    highlights: [
+      'Gestisco piattaforme Kubernetes (AKS) che ospitano repository istituzionali e sistemi CRIS per università ed enti di ricerca.',
+      'Porto i deployment su un modello GitOps con FluxCD e Helm: ambienti versionati in Git, coerenti e ricostruibili in ogni momento.',
+      'Progetto pipeline CI/CD con GitHub Actions e workflow riusabili, per standardizzare build e release tra i progetti.',
+      'Automatizzo provisioning e configurazione con Ansible, con un occhio costante ad affidabilità e semplicità operativa.',
+    ],
+    tags: ['DSpace', 'DSpace-CRIS', 'AKS', 'FluxCD', 'Helm', 'GitHub Actions', 'Ansible'],
+  },
+]
+
 const areas = [
   {
     title: 'Piattaforme Kubernetes',
-    description: 'Release, standardizzazione, affidabilità.',
-  },
-  {
-    title: 'Automazione CI/CD',
-    description: 'Workflow riusabili e delivery più chiara.',
+    description:
+      'Cluster AKS affidabili per applicazioni e servizi di ricerca: release standard, ambienti coerenti, zero drift.',
   },
   {
     title: 'GitOps & FluxCD',
-    description: 'Ambienti coerenti e versionati in Git.',
+    description:
+      'Lo stato dell’infrastruttura vive in Git: versionato, revisionabile e ricostruibile in ogni momento.',
+  },
+  {
+    title: 'Automazione CI/CD',
+    description:
+      'Pipeline GitHub Actions e workflow riusabili che rendono la delivery prevedibile e noiosa. Nel senso buono.',
   },
 ]
 
@@ -32,10 +59,13 @@ export default function App() {
   return (
     <div className="page-shell">
       <header className="topbar">
-        <div className="brand">Andrea Di Paola</div>
+        <div className="brand">
+          <span className="brand-dot" />
+          Andrea Di Paola
+        </div>
 
         <nav className="nav">
-          <a href="#profilo">Profilo</a>
+          <a href="#esperienza">Esperienza</a>
           <a href="#stack">Stack</a>
           <a href="#focus">Focus</a>
           <a href="#contatti">Contatti</a>
@@ -44,151 +74,211 @@ export default function App() {
 
       <main>
         <section className="hero">
+          <Suspense fallback={null}>
+            <Scene3D />
+          </Suspense>
+
           <div className="hero-copy">
-            <div className="eyebrow">DevOps Engineer</div>
+            <Reveal>
+              <div className="status-pill">
+                <span className="status-dot" />
+                DevOps Engineer @ 4Science
+              </div>
+            </Reveal>
 
-            <h1>
-              Infrastrutture pulite.
-              <br />
-              Automazione solida.
-              <br />
-              Delivery affidabile.
-            </h1>
+            <Reveal delay={90}>
+              <h1>
+                Infrastrutture pulite.
+                <br />
+                Automazione solida.
+                <br />
+                <span className="gradient-text">Delivery affidabile.</span>
+              </h1>
+            </Reveal>
 
-            <p className="hero-text">
-              Kubernetes, GitOps, CI/CD e platform workflows.
-            </p>
+            <Reveal delay={180}>
+              <p className="hero-text">
+                Costruisco e gestisco piattaforme Kubernetes e workflow GitOps
+                per l&rsquo;open science: repository istituzionali, sistemi CRIS
+                e pipeline che portano il codice in produzione senza sorprese.
+              </p>
+            </Reveal>
 
-            <div className="hero-actions">
-              <a
-                className="button button-primary"
-                href="https://github.com/andreadipaolaa"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
+            <Reveal delay={270}>
+              <div className="hero-actions">
+                <a
+                  className="button button-primary"
+                  href="https://github.com/andreadipaolaa"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
 
-              <a
-                className="button button-secondary"
-                href="https://www.linkedin.com/in/andrea-di-paola-606704192/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
+                <a
+                  className="button button-secondary"
+                  href="https://www.linkedin.com/in/andrea-di-paola-606704192/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </Reveal>
           </div>
 
-          <aside id="profilo" className="card glass-card profile-card">
-            <div className="section-label">Profilo</div>
+          <a className="scroll-cue" href="#esperienza" aria-label="Scorri alla sezione esperienza">
+            <span />
+          </a>
+        </section>
 
-            <div className="profile-name">Andrea</div>
-            <div className="profile-role">DevOps Engineer</div>
+        <section id="esperienza" className="section-block">
+          <Reveal>
+            <div className="section-label">Esperienza</div>
+            <h2 className="section-title">Dove lavoro, cosa faccio</h2>
+          </Reveal>
 
-            <div className="profile-grid">
-              <div className="soft-box">
-                <div className="soft-label">Focus</div>
-                <div className="soft-value">Kubernetes · GitOps · CI/CD</div>
-              </div>
+          <div className="timeline">
+            {experiences.map((exp) => (
+              <Reveal key={exp.company} delay={120}>
+                <article className="timeline-item">
+                  <div className="timeline-meta">
+                    <span className="timeline-period">{exp.period}</span>
+                  </div>
 
-              <div className="soft-box">
-                <div className="soft-label">Approccio</div>
-                <div className="soft-value">Semplicità · Standard · Affidabilità</div>
-              </div>
-            </div>
-          </aside>
+                  <TiltCard className="timeline-card" max={4}>
+                    <div className="timeline-header">
+                      <h3>{exp.role}</h3>
+                      <a
+                        className="timeline-company"
+                        href={exp.companyUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {exp.company} ↗
+                      </a>
+                    </div>
+
+                    <p className="timeline-note">{exp.companyNote}</p>
+
+                    <ul className="timeline-highlights">
+                      {exp.highlights.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+
+                    <div className="chips chips-small">
+                      {exp.tags.map((tag) => (
+                        <span key={tag} className="chip">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </TiltCard>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </section>
 
         <section id="stack" className="section-block">
-          <div className="section-label">Stack</div>
+          <Reveal>
+            <div className="section-label">Stack</div>
+            <h2 className="section-title">Strumenti di ogni giorno</h2>
+          </Reveal>
 
-          <div className="chips">
-            {stack.map((item) => (
-              <span key={item} className="chip">
-                {item}
-              </span>
+          <Reveal delay={120}>
+            <div className="chips">
+              {stack.map((item) => (
+                <span key={item} className="chip">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </section>
+
+        <section id="focus" className="section-block">
+          <Reveal>
+            <div className="section-label">Focus</div>
+            <h2 className="section-title">Ambiti su cui lavoro</h2>
+          </Reveal>
+
+          <div className="areas-grid">
+            {areas.map((area, index) => (
+              <Reveal key={area.title} delay={index * 110}>
+                <TiltCard className="area-card">
+                  <div className="area-top">
+                    <h3>{area.title}</h3>
+                    <span className="arrow-circle">↗</span>
+                  </div>
+                  <p>{area.description}</p>
+                </TiltCard>
+              </Reveal>
             ))}
           </div>
         </section>
 
         <section className="section-block">
-          <div className="section-label">Principi</div>
+          <Reveal>
+            <div className="section-label">Principi</div>
+          </Reveal>
 
           <div className="principles">
-            {principles.map((item) => (
-              <div key={item} className="principle-card">
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="focus" className="section-block">
-          <div className="section-label">Focus</div>
-          <h2 className="section-title">Ambiti su cui lavoro</h2>
-
-          <div className="areas-grid">
-            {areas.map((area) => (
-              <a
-                key={area.title}
-                className="area-card"
-                href="https://github.com/andreadipaolaa"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="area-top">
-                  <h3>{area.title}</h3>
-                  <span className="arrow-circle">↗</span>
-                </div>
-                <p>{area.description}</p>
-              </a>
+            {principles.map((item, index) => (
+              <Reveal key={item} delay={index * 80}>
+                <div className="principle-card">{item}</div>
+              </Reveal>
             ))}
           </div>
         </section>
 
         <section id="contatti" className="section-block">
-          <div className="card contact-card">
-            <div>
-              <div className="section-label">Contatti</div>
-              <h2 className="section-title">
-                Restiamo in contatto.
-                <br />
-                Parliamone.
-              </h2>
+          <Reveal>
+            <div className="contact-card">
+              <div>
+                <div className="section-label">Contatti</div>
+                <h2 className="section-title">
+                  Restiamo in contatto.
+                  <br />
+                  Parliamone.
+                </h2>
+              </div>
+
+              <div className="contact-actions">
+                <a
+                  className="button button-secondary"
+                  href="https://github.com/andreadipaolaa"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  className="button button-secondary"
+                  href="https://www.linkedin.com/in/andrea-di-paola-606704192/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn
+                </a>
+
+                <a
+                  className="button button-primary"
+                  href="mailto:andrea.dipaola@outlook.com"
+                >
+                  Email
+                </a>
+              </div>
             </div>
-
-            <div className="contact-actions">
-              <a
-                className="button button-secondary"
-                href="https://github.com/andreadipaolaa"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-
-              <a
-                className="button button-secondary"
-                href="https://www.linkedin.com/in/andrea-di-paola-606704192/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-
-              <a
-                className="button button-primary"
-                href="mailto:andrea.dipaola@outlook.com"
-              >
-                Email
-              </a>
-            </div>
-          </div>
+          </Reveal>
         </section>
       </main>
 
-      <footer className="footer">© Andrea Di Paola</footer>
+      <footer className="footer">
+        © Andrea Di Paola — costruito con React, Vite e Three.js
+      </footer>
     </div>
   )
 }

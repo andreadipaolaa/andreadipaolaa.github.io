@@ -1,4 +1,4 @@
-# Andrea personal site — React + Vite + GitHub Pages
+# Andrea personal site — React + Vite + Three.js + GitHub Pages
 
 Questo progetto è pensato per essere:
 
@@ -9,9 +9,26 @@ Questo progetto è pensato per essere:
 ## Struttura del progetto
 
 - `src/App.jsx` → il layout e i contenuti della pagina
-- `src/styles.css` → tutto lo stile della pagina
+- `src/components/Scene3D.jsx` → la scena 3D animata della hero (react-three-fiber)
+- `src/components/TiltCard.jsx` → card con effetto tilt 3D al passaggio del mouse
+- `src/components/Reveal.jsx` → animazioni di comparsa allo scroll (IntersectionObserver)
+- `src/styles.css` → tutto lo stile della pagina (tema dark)
 - `vite.config.js` → configurazione di Vite
-- `.github/workflows/deploy.yml` → workflow che builda e pubblica il sito
+- `.github/workflows/deploy.yaml` → workflow che builda e pubblica il sito
+
+## La scena 3D
+
+La hero usa [three.js](https://threejs.org) tramite
+[@react-three/fiber](https://docs.pmnd.rs/react-three-fiber): una rete di
+nodi collegati (un "cluster") che ruota lentamente, con un icosaedro
+wireframe al centro e la camera che segue il mouse in parallasse.
+
+Dettagli utili:
+
+- il componente è caricato in **lazy loading**, così la pagina appare subito
+  e three.js (~240 KB gzip) arriva dopo
+- con `prefers-reduced-motion` le animazioni si fermano
+- la disposizione dei nodi usa un PRNG con seed fisso: è identica a ogni visita
 
 ## Perché questa stack
 
