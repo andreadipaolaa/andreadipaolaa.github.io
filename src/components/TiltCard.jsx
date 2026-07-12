@@ -1,5 +1,9 @@
 import { useRef } from 'react'
 
+// Su touch (iOS) niente tilt: il tap lascerebbe la card inclinata
+const canHover = () =>
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
 // Card con inclinazione 3D che segue il mouse + riflesso luminoso
 export default function TiltCard({ children, className = '', max = 9 }) {
   const ref = useRef(null)
@@ -7,7 +11,7 @@ export default function TiltCard({ children, className = '', max = 9 }) {
 
   const onMove = (event) => {
     const el = ref.current
-    if (!el) return
+    if (!el || !canHover()) return
     const rect = el.getBoundingClientRect()
     const px = (event.clientX - rect.left) / rect.width - 0.5
     const py = (event.clientY - rect.top) / rect.height - 0.5

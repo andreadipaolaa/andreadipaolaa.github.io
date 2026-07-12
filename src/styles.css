@@ -37,6 +37,7 @@ body {
     'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -56,6 +57,8 @@ a {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 24px 24px 72px;
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
 }
 
 /* ---------- topbar ---------- */
