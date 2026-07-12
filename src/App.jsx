@@ -6,16 +6,21 @@ import Reveal from './components/Reveal.jsx'
 const Scene3D = lazy(() => import('./components/Scene3D.jsx'))
 
 const stack = [
+  'AWS',
+  'EKS',
   'Kubernetes',
-  'AKS',
+  'ArgoCD',
   'GitOps',
-  'FluxCD',
+  'Aurora',
+  'CloudFront',
   'Helm',
   'GitHub Actions',
+  'FluxCD',
+  'AKS',
+  'VMware',
   'Ansible',
   'Docker',
   'Linux',
-  'CI/CD',
 ]
 
 const experiences = [
@@ -24,27 +29,38 @@ const experiences = [
     role: 'DevOps Engineer',
     company: '4Science',
     companyUrl: 'https://4science.com',
-    companyNote: 'Platinum Certified Provider di DSpace · open science e research data',
+    companyNote: 'Cloud AWS, Kubernetes e GitOps per progetti istituzionali',
     highlights: [
-      'Gestisco piattaforme Kubernetes (AKS) che ospitano repository istituzionali e sistemi CRIS per università ed enti di ricerca.',
-      'Porto i deployment su un modello GitOps con FluxCD e Helm: ambienti versionati in Git, coerenti e ricostruibili in ogni momento.',
-      'Progetto pipeline CI/CD con GitHub Actions e workflow riusabili, per standardizzare build e release tra i progetti.',
-      'Automatizzo provisioning e configurazione con Ansible, con un occhio costante ad affidabilità e semplicità operativa.',
+      'Ho progettato il sistema di CI/CD GitOps del progetto istituzionale del Gioco del Lotto italiano, con deployment dichiarativi basati su ArgoCD.',
+      'Progetto e gestisco infrastrutture su AWS: cluster EKS, database Aurora, CloudFront come CDN, firewall e networking.',
+      'Gestisco release e ambienti con ArgoCD: lo stato dell’infrastruttura è versionato in Git, coerente e ricostruibile.',
+      'Automatizzo build e release con GitHub Actions e workflow riusabili.',
     ],
-    tags: ['DSpace', 'DSpace-CRIS', 'AKS', 'FluxCD', 'Helm', 'GitHub Actions', 'Ansible'],
+    tags: ['AWS', 'EKS', 'ArgoCD', 'Aurora', 'CloudFront', 'GitHub Actions'],
+  },
+  {
+    period: 'In precedenza',
+    role: 'DevOps Engineer',
+    companyNote: 'Piattaforme Kubernetes in cloud Azure e on-premise',
+    highlights: [
+      'Gestione di cluster Kubernetes su AKS e on-premise su VMware.',
+      'Deployment GitOps con FluxCD e Helm: ambienti versionati, coerenti e ricostruibili.',
+      'Automazione di provisioning e configurazione con Ansible.',
+    ],
+    tags: ['AKS', 'Kubernetes', 'VMware', 'FluxCD', 'Helm', 'Ansible'],
   },
 ]
 
 const areas = [
   {
-    title: 'Piattaforme Kubernetes',
+    title: 'Cloud AWS',
     description:
-      'Cluster AKS affidabili per applicazioni e servizi di ricerca: release standard, ambienti coerenti, zero drift.',
+      'Infrastrutture su AWS progettate per essere affidabili e ricostruibili: EKS, Aurora, CloudFront e networking sicuro.',
   },
   {
-    title: 'GitOps & FluxCD',
+    title: 'GitOps & ArgoCD',
     description:
-      'Lo stato dell’infrastruttura vive in Git: versionato, revisionabile e ricostruibile in ogni momento.',
+      'Lo stato dell’infrastruttura vive in Git: deployment dichiarativi con ArgoCD, versionati e revisionabili.',
   },
   {
     title: 'Automazione CI/CD',
@@ -98,9 +114,9 @@ export default function App() {
 
             <Reveal delay={180}>
               <p className="hero-text">
-                Costruisco e gestisco piattaforme Kubernetes e workflow GitOps
-                per l&rsquo;open science: repository istituzionali, sistemi CRIS
-                e pipeline che portano il codice in produzione senza sorprese.
+                Costruisco e gestisco piattaforme cloud su AWS e Kubernetes:
+                cluster EKS, delivery GitOps con ArgoCD e pipeline che portano
+                il codice in produzione senza sorprese.
               </p>
             </Reveal>
 
@@ -140,7 +156,7 @@ export default function App() {
 
           <div className="timeline">
             {experiences.map((exp) => (
-              <Reveal key={exp.company} delay={120}>
+              <Reveal key={exp.period} delay={120}>
                 <article className="timeline-item">
                   <div className="timeline-meta">
                     <span className="timeline-period">{exp.period}</span>
@@ -149,14 +165,16 @@ export default function App() {
                   <TiltCard className="timeline-card" max={4}>
                     <div className="timeline-header">
                       <h3>{exp.role}</h3>
-                      <a
-                        className="timeline-company"
-                        href={exp.companyUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {exp.company} ↗
-                      </a>
+                      {exp.company && (
+                        <a
+                          className="timeline-company"
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {exp.company} ↗
+                        </a>
+                      )}
                     </div>
 
                     <p className="timeline-note">{exp.companyNote}</p>
